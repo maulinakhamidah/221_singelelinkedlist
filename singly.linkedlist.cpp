@@ -1,19 +1,57 @@
 #include <iostream>
-using namespace std;;
+#include <string.h>
+using namespace std;
 
-// membuat struct node
-struct Node
+class Node
 {
+    public:
     int noMhs;
     Node *next;
 };
 
-// set value START = NULLL
-Node *START = NULL;
-
-// membuat prosedur addNode()
-void addNode()
+class LinkedList
 {
-    
+    Node *START;
 
-}
+public:
+    LinkedList()
+    {
+        START = NULL;
+    }
+    void addNode()
+    {
+        int nim;
+        cout <<"\nMasukkan Nomor Mahasiswa: ";
+        cin >> nim;
+
+        Node *nodeBaru = new Node;
+        nodeBaru->noMhs = nim;
+
+        if (START == NULL || nim <= START->noMhs)
+        {
+            if ((START != NULL) && (nim == START->noMhs))
+            {
+                cout <<"\nDuplikat noMhs tidak diijinkan\n";
+            }
+            nodeBaru->next = START;
+            START = nodeBaru;
+            return;
+
+            Node *previous = START;
+            Node *current = START;
+
+            while ((current != NULL) && (nim >= current ->noMhs))
+            {
+                if (nim == current ->noMhs)
+                {
+                    cout <<"\nDuplikat noMhs tidak diijinkan\n";
+                    return;
+                }
+                previous = current;
+                current = current->next;
+            
+                
+            }
+        }
+    }
+};
