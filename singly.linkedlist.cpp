@@ -53,5 +53,55 @@ public:
                 
             }
         }
+        nodeBaru->next = current;
+        previous->next = nodeBaru;
+    }
+    bool listEmpaty()
+    {
+        return (START == NULL);
+    }
+    bool search(int nim, Node **previous, Node **current)
+    {
+        *previous = START;
+        *current = START;
+
+        while ((*current != NULL) && (nim!=(*current)->noMhs))
+        {
+            *previous = *current;
+            *previous = (*current)->next;
+        }
+        return (*current != NULL);
+    }
+    bool delNode(int nim)
+    {
+        Node *current, *previous;
+        if (!Search(nim, &previous, &current))
+        return false;
+
+        if (current == START)
+            START = START->next;
+        else
+        previous->next = current->next;
+
+        delete current;
+        return true;
+    }
+    void traverse()
+    {
+        if (listEmpaty())
+        {
+            cout <<"\nList Kosong\n";
+        }
+        else
+        {
+            cout <<"\nData didalam list adalah:\n";
+            Node *currentNode = START;
+            while (currentNode != NULL)
+            {
+                cout << currentNode->noMhs << endl;
+                currentNode = currentNode->next;
+            }
+            cout << endl;
+        }
     }
 };
